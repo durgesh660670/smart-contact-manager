@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-1">
+                    <div class="card">
+                        <div class="card-head text-center text-white bg-primary p-3">
+                            <h3>YOUR CONTACT</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="container text-center my-5">
+                                <img style="height: 150;width: 150px;"  th:src="@{'/img/'+${contact.image}}" alt=""><br>
+                                <h1 th:text="${contact.name}"></h1>
+                            </div>
+                            
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" >#Id</th>
+                                        <th scope="col"><span th:text="${'SCM2022'+contact.cId}"></span></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <th scop="row"><span>Name</span></th>
+                                        <td><span th:text="${contact.name}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scop="row"><span>Nick Name</span></th>
+                                        <td><span th:text="${contact.sName}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scop="row"><span>Email</span></th>
+                                        <td><span th:text="${contact.email}"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scop="row"><span>Mobile</span></th>
+                                        <td><span th:text="${contact.mobile}"></span></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

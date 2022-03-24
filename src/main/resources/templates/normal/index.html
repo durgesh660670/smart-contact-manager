@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+
+<head>
+    <meta charset=" UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h1, initial-scale=1.0">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container text-center text-secondary">
+                        <img style="height: 150;width: 150px;" th:src="@{'/img/scm.png'}" alt=""><br>
+                        <h2>Smart adding your contact on cloud..</h2>
+                    </div>
+
+                    <div class="container mt-5">
+                        <a class="btn bg-primary btn-block text-white text-uppercase"
+                            th:href="@{/user/add_contact_form}">Add new contact</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <script th:src="@{/js/index.js}"></script>
+    </section>
+
+</body>
+
+</html>
