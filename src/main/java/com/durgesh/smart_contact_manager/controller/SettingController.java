@@ -43,7 +43,7 @@ public class SettingController {
     }
 
     @GetMapping("/settings")
-    public String setting(Model model) {
+    public String openSetting(Model model) {
 
         model.addAttribute("title", "Setting - Smart contact manager");
         System.out.println("inside setting....");
@@ -51,21 +51,29 @@ public class SettingController {
         return "normal/setting";
     }
 
-    @PostMapping("/process_setting")
-    public String process_setting(Model model, @RequestParam("o-password") String o_password,
-            @RequestParam("c-o-password") String c_o_password, @RequestParam("new-password") String new_password,
+    @PostMapping("/process_change_password")
+    public String process_change_password(Model model, @RequestParam("o-password") String o_password,
+            @RequestParam("c-n-password") String c_n_password, @RequestParam("new-password") String new_password,
             Principal principal, HttpSession session) {
 
-        model.addAttribute("title", "process_setting - Smart contact manager");
-        System.out.println("inside process_setting....");
+        model.addAttribute("title", "process_change_password - Smart contact manager");
+        System.out.println("inside process_change_password....");
+        
+        User user = this.ur.getUserByUserName(principal.getName());
 
-        if (!o_password.equals(c_o_password)) {
+        boolean matches = this.pE.matches(o_password, user.getPassword());
 
-            session.setAttribute("message", new Message("Old Password did not match!", "alert-danger"));
+        if (!new_password.equals(c_n_password)) {
+
+            session.setAttribute("message", new Message("Password and confirm Password did not match!", "alert-danger"));
             return "normal/setting";
         }
+        else if(matches==false){
+            session.setAttribute("message", new Message("Old Password did not match!", "alert-danger"));
+            return "normal/setting";
 
-        User user = this.ur.getUserByUserName(principal.getName());
+        }
+
 
         // System.out.println(new_password);
 
