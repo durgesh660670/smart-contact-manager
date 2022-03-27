@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <section>
+        <div class="container">
+
+            <div class="row mt-5">
+                <div class="col-md-6 offset-3">
+                    <div class="card">
+                        <div class="card-head text-center  text-white bg-primary py-2">
+                            <h2>Verify OTP</h2>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div th:if="${session.message}" th:classappend="${session.message.type}"
+                                class="alert text-center mt-2" role="alert">
+                                <p th:text="${session.message.content}"></p>
+                                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                            </div>
+
+                            <form th:action="@{/process_verify_forgot_password_otp}" method="post">
+                                <div class="mb-3">
+                                    <label for="otp" class="form-label">Enter OTP here</label>
+                                    <input type="text" class="form-control" id="otp" aria-describedby="emailHelp"
+                                        name="otp" required>
+
+                                </div>
+                                <div class="containeter text-center">
+                                    <button type="submit" class="btn bg-secondary">Verify</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>

@@ -19,6 +19,12 @@
                             <h2>Login</h2>
 
                         </div>
+                        <div th:if="${session.message}" th:classappend="${session.message.type}"
+                            class="alert text-center mt-2" role="alert">
+                            <p th:text="${session.message.content}"></p>
+                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                        </div>
+
                         <div th:if="${param.error}" class="alert alert-danger">
                             Invalid Credentials
                         </div>
@@ -29,17 +35,22 @@
 
                             <form th:action="@{/process_signin}" method="post">
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">User Name</label>
-                                    <input type="text" class="form-control" id="username" aria-describedby="emailHelp"
-                                        name="username">
+                                    <label for="username" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="username" aria-describedby="emailHelp"
+                                        name="username" required>
 
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                                    <input type="password" class="form-control" id="exampleInputPassword1"
+                                        name="password">
                                 </div>
                                 <div class="containeter text-center">
                                     <button type="submit" class="btn bg-primary">Submit</button>
+                                </div>
+
+                                <div class="my-2">
+                                    <a href="/forgot_password">Forgot Password?</a>
                                 </div>
 
                             </form>
