@@ -9,53 +9,70 @@
 </head>
 
 <body>
-    <section>
+    <section class="login">
         <div class="container">
 
             <div class="row mt-5">
-                <div class="col-md-6 offset-3">
-                    <div class="card">
-                        <div class="card-head text-center  text-white bg-primary py-2">
-                            <h2>Login</h2>
+                <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
-                        </div>
-                        <div th:if="${session.message}" th:classappend="${session.message.type}"
-                            class="alert text-center mt-2" role="alert">
-                            <p th:text="${session.message.content}"></p>
-                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
-                        </div>
 
-                        <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid Credentials
-                        </div>
-                        <div th:if="${param.logout}" class="alert alert-success">
-                            You have been logged out
-                        </div>
-                        <div class="card-body">
-
-                            <form th:action="@{/process_signin}" method="post">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Email address</label>
-                                    <input type="email" class="form-control" id="username" aria-describedby="emailHelp"
-                                        name="username" required>
-
-                                </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        name="password">
-                                </div>
-                                <div class="containeter text-center">
-                                    <button type="submit" class="btn bg-primary">Submit</button>
-                                </div>
-
-                                <div class="my-2">
-                                    <a href="/forgot_password">Forgot Password?</a>
-                                </div>
-
-                            </form>
-                        </div>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}"
+                        class="alert text-center mt-2" role="alert">
+                        <p th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
                     </div>
+
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Invalid Credentials
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out
+                    </div>
+
+                    <div class="logo text-center">
+                        <img th:src="@{/img/login.png}" alt="logo" class="logo1">
+                    </div>
+
+                    <form th:action="@{/process_signin}" method="post" class="bg-white shadow p-5 rounded text-center">
+
+                        <h3 class="fw-bolder fs-4 mb-2">Login</h3>
+                        <div class="mb-4 fw-normal text-muted ">
+                            New Here? <a href="/register" class="text-primary fw-bold text-decoration-none">Create an
+                                Account</a>
+                        </div>
+
+
+
+
+                        <div class="form-floating mb-3">
+                            <label for="username" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="username" aria-describedby="emailHelp"
+                                name="username" required>
+
+                        </div>
+                        <div class="form-floating mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                        </div>
+
+
+                        <div class="mt-2 text-end">
+                            <a href="/forgot_password" class="text-primary fw-bold text-decoration-none">Forgot
+                                Password?</a>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary submit_btn w-100 my-4 ">Continue</button>
+                        <div class="text-center text-muted text-uppercase mb-3">
+                            or
+                        </div>
+
+                        <a href="" class="btn btn-light login_with w-100 mb-3">
+                            <img th:src="@{/img/google.png}" alt="google" class="img-fluid me-3">Continue with Google
+                        </a>
+
+                    </form>
+
+
                 </div>
 
             </div>
