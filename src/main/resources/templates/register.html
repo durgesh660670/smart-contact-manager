@@ -10,96 +10,122 @@
 </head>
 
 <body>
-    <section>
+    <section class="register">
+
 
         <div class="container">
 
             <div class="row mt-5">
-                <div class="col-md-8 offset-2">
-                    <div class="card ">
-                        <div th:if="${session.message}" th:classappend="${session.message.type}"
-                            class="alert text-center mt-2" role="alert">
-                            <p th:text="${session.message.content}"></p>
-                            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
-                        </div>
+                <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
 
-                        <div class="card-head text-center text-white bg-primary py-2">
-                            <img th:src="@{/img/register_logo.png}" alt="" class="register_logo img-fluid">
-                            <h2>Register Here !!</h2>
-                        </div>
-
-                        <div class="card-body">
-
-                            <form th:action="@{/process_register}" th:object="${user}" method="post">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Enter email address</label>
-                                    <input
-                                    th:classappend="${#fields.hasErrors('email')?'is-invalid':''}"
-                                    type="email" class="form-control" id="email" th:value="${user.email}"
-                                        name="email">
-
-                                    <div   th:each="e:${#fields.errors('email')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-                                        
-                                    </div>
-
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Enter name</label>
-                                    <input 
-                                    th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
-                                    type="text" class="form-control" id="name" th:value="${user.name}"
-                                        name="name">
-
-                                    <div th:each="e:${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-                                        Please provide a valid city.
-                                    </div>
-
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Enter Password</label>
-                                    <input
-                                    th:classappend="${#fields.hasErrors('password')?'is-invalid':''}"
-                                    type="password" class="form-control" id="password" name="password">
-
-                                    <div th:each="e:${#fields.errors('password')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-                                        Please provide a valid city.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="password2" class="form-label">Re-Enter Password</label>
-                                    <input
-                                    type="password" class="form-control" id="password2" name="password2">
-
-                                </div>
-
-                                <div class="mb-3">
-                                    <textarea th:text="${user.about}"
-                                    th:classappend="${#fields.hasErrors('about')?'is-invalid':''}"
-                                    name="about" rows="6" placeholder="Enter about youself"
-                                        style="width: 100%;"></textarea>
-
-                                    <div th:each="e:${#fields.errors('about')}" th:text="${e}" id="validationServer03Feedback" class="invalid-feedback">
-                                        Please provide a valid city.
-                                    </div>
-
-                                </div>
-
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="agreement" name="agreement"
-                                        value="true">
-                                    <label class="form-check-label" for="agreement">Accept terms and conditions</label>
-                                </div>
-
-
-                                <div class="container text-center">
-                                    <button type="submit" class="btn btn-primary">SUBMIT</button>
-                                    <button type="submit" class="btn btn-warning">RESET</button>
-                                </div>
-
-                            </form>
-                        </div>
+                    <div th:if="${session.message}" th:classappend="${session.message.type}"
+                        class="alert text-center mt-2" role="alert">
+                        <p th:text="${session.message.content}"></p>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
                     </div>
+                    <div class="logo text-center">
+                        <img th:src="@{/img/register_logo.png}" alt="" class="register_logo img-fluid">
+                    </div>
+
+
+
+
+                    <form th:action="@{/process_register}" th:object="${user}" method="post"
+                        class="bg-white shadow p-5 rounded text-center">
+
+                        <h3 class="fw-bolder fs-4 mb-2">Create an Account</h3>
+                        <div class="mb-3 fw-normal text-muted ">
+                            Already have an account? <a href="/signin"
+                                class="text-primary fw-bold text-decoration-none">Sign
+                                in here</a>
+                        </div>
+
+                        <div class="text-center text-muted text-uppercase mb-3">
+                            or
+                        </div>
+                        <a href="" class="btn btn-light login_with w-100 mb-4">
+                            <img src="/img/google.png" alt="google" class="img-fluid me-3">Sign in with Google
+                        </a>
+
+                        <div class="form-floating mb-3">
+
+                            <input th:classappend="${#fields.hasErrors('email')?'is-invalid':''}" type="email"
+                                class="form-control" id="email" th:value="${user.email}" name="email" placeholder=" ">
+                            <label for="email">Email address</label>
+
+                            <div th:each="e:${#fields.errors('email')}" th:text="${e}" id="validationServer03Feedback"
+                                class="invalid-feedback">
+
+                            </div>
+
+                        </div>
+
+                     
+
+
+
+
+                        <div class="form-floating mb-3">
+                            
+                            <input th:classappend="${#fields.hasErrors('name')?'is-invalid':''}" type="text"
+                                class="form-control" id="name" th:value="${user.name}" name="name" placeholder=" ">
+
+                                <label for="name">Name</label>
+
+                            <div th:each="e:${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+
+                        </div>
+                        <div class="form-floating mb-3">
+                           
+                            <input th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" type="password"
+                                class="form-control" id="password" name="password" placeholder=" ">
+                                <label for="password">Password</label>
+                            <div th:each="e:${#fields.errors('password')}" th:text="${e}"
+                                id="validationServer03Feedback" class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                           
+                            <input type="password" class="form-control" id="password2" name="password2" placeholder=" ">
+                            <label for="password2">Confirm Password</label>
+
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <textarea th:text="${user.about}"
+                                th:classappend="${#fields.hasErrors('about')?'is-invalid':''}" name="about" rows="6"
+                                placeholder="Enter about youself" style="width: 100%;"></textarea>
+
+                            <div th:each="e:${#fields.errors('about')}" th:text="${e}" id="validationServer03Feedback"
+                                class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-check d-flex align-items-center">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" checked>
+                            <label class="form-check-label m-2" for="gridCheck">
+                                I Agree <a href="#">Terms and conditions</a>.
+                            </label>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary submit_btn w-100 my-4 ">Continue</button>
+
+
+
+
+
+                    </form>
+
+
                 </div>
 
             </div>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <section>
+
+        <div class="container">
+            <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center mt-2"
+                role="alert">
+                <p th:text="${session.message.content}"></p>
+                <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+            </div>
+
+
+            <div class="row mt-5">
+                <div class="col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+
+                    <form th:action="@{/user/process_update_your_profile_form}" method="post"
+                        enctype="multipart/form-data" class="bg-white shadow p-5 rounded text-center"
+                        th:object="${user}">
+
+                        <h3 class="fw-bolder fs-4 mb-4 text-uppercase">Start updating your profile here </h3>
+
+                        <input type="hidden" name="uId" th:value="${user.uId}">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="f-name" placeholder="name@example.com"
+                                th:value="${user.name}" name="name">
+                            <label for="f-name">Name</label>
+                        </div>
+
+                        <div class="form-floating mb-3 ">
+                            <input type="text" class="form-control" id="about" placeholder="name@example.com"
+                            
+                            th:value="${user.about}" name="about">
+                            <label for="about">About</label>
+                        </div>
+
+                        <div class="mb-3 text-start fw-bolder">
+                            <label for="image" class="form-label">Select your profile</label><br>
+                            <input type="file" id="image" name="img">
+
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary  w-100 my-2 text-uppercase ">Submit</button>
+                        <button type="reset" class="btn btn-warning  w-100 text-uppercase  ">RESET</button>
+
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+</body>
+
+</html>

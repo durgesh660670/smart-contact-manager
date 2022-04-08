@@ -33,7 +33,7 @@ body {
     padding: 0 0 100px;
     background-image: url();
     /* background: url('img/bg2.jpg') no-repeat bottom center/cover; */
-    background-image: url(/img/bg2.jpg);
+    background-image: url(/src/main/resources/static/img/bg2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -124,20 +124,24 @@ box-shadow: none;
     background: white;
     position: fixed;
     /* margin-top: 11px; */
+    margin: 0px;
+    padding: 0px;
 
 }
 
 #side-bar .menu {
 
     margin-top: 40px;
+    
 
 }
 
 
 #side-bar .menu li {
     /* border: 2px solid red; */
-    margin: 10px 2px;
+    margin: 10px 0px;
     padding: 10px 2px;
+    list-style: none;
 
 }
 

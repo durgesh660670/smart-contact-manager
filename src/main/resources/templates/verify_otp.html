@@ -29,10 +29,10 @@
                             </div>
 
                             <form th:action="@{/process_verify_forgot_password_otp}" method="post">
-                                <div class="mb-3">
-                                    <label for="otp" class="form-label">Enter OTP here</label>
+                                <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="otp" aria-describedby="emailHelp"
-                                        name="otp" required>
+                                    name="otp" required placeholder=" ">
+                                    <label for="otp" class="form-label">Enter OTP here</label>
 
                                 </div>
                                 <div class="containeter text-center">

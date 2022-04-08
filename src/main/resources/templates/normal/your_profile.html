@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 offset-1">
-                    <div class="card">
+                    <div class="card mb-5">
                         <div class="card-head text-center text-white bg-primary p-3">
                             <h3>YOUR PROFILE</h3>
                         </div>
@@ -49,13 +49,9 @@
                                 </tbody>
 
                             </table>
-
-
-
-
-
-
-
+                            <div class="mb-3 text-center">
+                                <a th:href="@{'/user/your_profile/update/'+${user.uId}}" class="btn btn-primary w-100 text-uppercase">Update</a>
+                            </div>
                         </div>
                     </div>
                 </div>

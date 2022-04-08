@@ -304,7 +304,6 @@ public class UserController {
         return "normal/update_contact_form";
     }
 
-
     // your_profile
 
     @GetMapping("/your_profile")
@@ -313,10 +312,78 @@ public class UserController {
         model.addAttribute("title", "Your profile Form - Smart contact manager");
         System.out.println("show_contacts....");
 
-       
-
         return "normal/your_profile";
     }
 
+    @GetMapping("/your_profile/update/{uId}")
+    public String openYourProfileUpdateForm(@PathVariable("uId") Integer uId, Model model) {
+
+        model.addAttribute("title", "openYourProfileUpdateForm - Smart contact manager");
+        System.out.println("YourProfileUpdate....");
+
+        Optional<User> user = this.ur.findById(uId);
+
+        User user2 = user.get();
+
+        model.addAttribute("user", user2);
+
+        return "normal/update_your_profile_form";
+    }
+
+    // process_update_your_profile_form
+
+    @PostMapping("/process_update_your_profile_form")
+    public String processUpdateYourProfileForm( @RequestParam("name") String name,
+            @RequestParam("about") String about, 
+            Model model, Principal p, @RequestParam("img") MultipartFile file, HttpSession session,
+            @RequestParam("uId") Integer uId) {
+
+        try {
+            model.addAttribute("title", "update Contact Form - Smart contact manager");
+            System.out.println("processUpdateYourProfileForm....");
+
+
+            Optional<User> optional = this.ur.findById(uId);
+            User user = optional.get();
+            // processing and uploading file..
+
+            if (file.isEmpty()) {
+                System.out.println("image is empty...");
+                user.setImage("default.png");
+
+            } else {
+
+                // System.out.println("image .." + file.getOriginalFilename());
+                user.setImage(file.getOriginalFilename());
+
+                File saveFile = new ClassPathResource("static/img").getFile();
+
+                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
+                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                System.out.println("image is uploaded...");
+
+            }
+
+            System.out.println("user .." + user.toString());
+
+            user.setName(name);
+            user.setAbout(about);
+
+            User newUser = this.ur.save(user);
+
+            session.setAttribute("message", new Message("profile updated Successfully.", "alert-success"));
+
+        } catch (Exception e) {
+            session.setAttribute("message", new Message("Something went wrong!", "alert-danger"));
+
+            e.printStackTrace();
+
+        }
+
+        model.addAttribute("user", new User());
+
+        return "normal/update_your_profile_form";
+    }
 
 }
