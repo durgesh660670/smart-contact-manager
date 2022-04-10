@@ -31,7 +31,7 @@
 
 
                     <form th:action="@{/process_register}" th:object="${user}" method="post"
-                        class="bg-white shadow p-5 rounded text-center">
+                        class="bg-white shadow p-5 rounded text-center" id="form1" name="form1">
 
                         <h3 class="fw-bolder fs-4 mb-2">Create an Account</h3>
                         <div class="mb-3 fw-normal text-muted ">
@@ -60,17 +60,17 @@
 
                         </div>
 
-                     
+
 
 
 
 
                         <div class="form-floating mb-3">
-                            
+
                             <input th:classappend="${#fields.hasErrors('name')?'is-invalid':''}" type="text"
                                 class="form-control" id="name" th:value="${user.name}" name="name" placeholder=" ">
 
-                                <label for="name">Name</label>
+                            <label for="name">Name</label>
 
                             <div th:each="e:${#fields.errors('name')}" th:text="${e}" id="validationServer03Feedback"
                                 class="invalid-feedback">
@@ -79,10 +79,10 @@
 
                         </div>
                         <div class="form-floating mb-3">
-                           
+
                             <input th:classappend="${#fields.hasErrors('password')?'is-invalid':''}" type="password"
                                 class="form-control" id="password" name="password" placeholder=" ">
-                                <label for="password">Password</label>
+                            <label for="password">Password</label>
                             <div th:each="e:${#fields.errors('password')}" th:text="${e}"
                                 id="validationServer03Feedback" class="invalid-feedback">
                                 Please provide a valid city.
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                           
+
                             <input type="password" class="form-control" id="password2" name="password2" placeholder=" ">
                             <label for="password2">Confirm Password</label>
 
@@ -110,18 +110,35 @@
 
 
                         <div class="form-check d-flex align-items-center">
-                            <input class="form-check-input" type="checkbox" id="gridCheck" checked>
+                            <input class="form-check-input" type="checkbox" id="gridCheck" checked name="agreement">
                             <label class="form-check-label m-2" for="gridCheck">
                                 I Agree <a href="#">Terms and conditions</a>.
                             </label>
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary submit_btn w-100 my-4 ">Continue</button>
+                        <button id="submit" type="button"
+                            class="btn btn-primary submit_btn w-100 my-4 " >Continue</button>
+
+                        <button id="submit1" type="button" onclick="submitEmail()"
+                            class="btn btn-primary submit_btn w-100 my-4 ">Continue</button>
 
 
 
+                    </form>
 
+
+                    <form  method="post" id="form2"
+                        class="bg-white shadow p-5 rounded text-center" >
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="otp" aria-describedby="emailHelp" name="otp"
+                                required placeholder=" ">
+                            <label for="otp" class="form-label">Enter OTP here</label>
+
+                        </div>
+                        <div class="containeter text-center">
+                            <button type="button" class="btn bg-secondary" onclick="verifyOpt()">Verify</button>
+                        </div>
 
                     </form>
 
@@ -130,7 +147,7 @@
 
             </div>
         </div>
-
+        <script th:src="@{/js/register.js}"></script>
     </section>
 </body>
 
