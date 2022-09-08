@@ -43,7 +43,7 @@ public class EmailService {
 
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                String password = "14565220@Du";
+                String password = "xuvjemphqlhsvuiw";
                 String userName = "dks660670@gmail.com";
 
                 PasswordAuthentication pa = new PasswordAuthentication(userName, password);
