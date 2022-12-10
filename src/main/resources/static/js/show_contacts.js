@@ -6,8 +6,6 @@ document.getElementById('view-contacts-link').classList.add('active')
 
 // search
 
-
-
 const search = () => {
 
     let query = document.getElementById("search-input").value;
@@ -44,7 +42,7 @@ const search = () => {
 
 
             }).catch((err) => {
-                // console.log(err);
+                 console.log(err);
 
 
             })

@@ -209,9 +209,9 @@ public class UserController {
 
         try {
 
-            String name = p.getName();
+            // String name = p.getName();
 
-            User user = this.ur.getUserByUserName(name);
+            // User user = this.ur.getUserByUserName(name);
 
             Optional<Contact> contact = this.cr.findById(cId);
             System.out.println("contact...." + contact);
